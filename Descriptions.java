@@ -1,5 +1,5 @@
 
-public class Descriptions {
+public class Descriptions  {
 
 	public Descriptions() {
 	}
@@ -24,7 +24,7 @@ public class Descriptions {
 		// There is a man/woman standing about x feet tall
 		x = x.concat(build(other));
 		// There is a man/woman standing about x feet tall.They have a(n) x build and are donned in *armor*
-		x= x.concat(hands(other));
+		x = x.concat(hands(other));
 		
 		return x;
 	}
@@ -37,6 +37,7 @@ public class Descriptions {
 		// There is a man/woman
 		x = x.concat(Height(other));
 		//There is a man/woman standing about x feet. 
+		
 		
 		return x;
 	}
@@ -56,8 +57,8 @@ public class Descriptions {
 			x = x.concat("In front of you is ");
 		}
 		 if (r == 2) {
-			x = x.concat("ROLL INITIATIVE! ");
-			Start(false);
+			x = x.concat("ROLL INITIATIVE! "+ Start(false));
+			
 		}
 		 if (r == 3) {
 			x = x.concat("You see ");
@@ -67,7 +68,7 @@ public class Descriptions {
 
 	public String Start(boolean INI) {
 		String x = "";
-		int r = (int) (Math.random() * 4);
+		int r = (int) (Math.random() * 3);
 
 		if (r == 0) {
 			x = x.concat("Before you stands ");
@@ -75,11 +76,8 @@ public class Descriptions {
 		if (r == 1) {
 			x = x.concat("In front of you is ");
 		}
-		if ((r == 2) && (INI != false)) {
-			x = x.concat("ROLL INITIATIVE! ");
-			Start(false);
-		}
-		if (r == 3) {
+
+		if (r == 2) {
 			x = x.concat("You see ");
 		}
 		return x;
@@ -166,7 +164,7 @@ public class Descriptions {
 				x = x.concat("and they are donned in " +ch1.Inventory.get(0).name+ ". ");
 			}
 			if (r == 2) {
-				x = x.concat("and they are dressed in " +ch1.Inventory.get(0).name + ". ");
+				x = x.concat("and they are dressed in " +ch1.Inventory.get(0).name+ ". ");
 			}
 		}
 		return x;
@@ -230,12 +228,8 @@ public class Descriptions {
 	// 0 = Armor : 1 = Left Hand : 2 = Right Hand: 3 = Necklace : 4 = Left Ring : 5 = Right Ring : >5 = Inventory
 	public String hands(Character ch1) {
 		String x = "";
-		
-		
-			x = x.concat("In "+PossessivePronoun(ch1) +"right hand he wields a "+ch1.Inventory.get(2).name +" and in "+PossessivePronoun(ch1) +"left, a "
+		x = x.concat("In "+PossessivePronoun(ch1) +"right hand he wields a "+ch1.Inventory.get(2).name +" and in "+PossessivePronoun(ch1) +"left, a "
 					+ch1.Inventory.get(1).name + ". " );
-		
-		
 		
 		return x;
 	}

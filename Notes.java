@@ -12,8 +12,14 @@ and
 
 
 
+0 = Str : 1 = Agi : 2 = Dext : 3 = Int : 4 = Const 
+5 = AttSpeed : 6 = PDmg : 7 = MDmg : 8 = Armor 
+9 = Lives : 10 = Luck
 
 
+0 == Health : 1 == Mana : 2 == Stamina : 3 == Stats (Strength, Agility, etc.)
+ 4 == Damage : 5 == Extra Life : 6 == Looting? 
+7 == Armor : 8 == AttackSpeed : 9 == PDamage : 10 == MDamage 
 
 
 

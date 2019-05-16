@@ -49,8 +49,15 @@ public class Character {
 	int AdjMDamage;
 	int AdjArmor;
 	
+	int AdjHealth;
+	int AdjMana;
+	int AdjStamina;
+	
 	int extraLife = 0;
 	int adjLuck;
+	
+	int sustainedDmg = 0;
+	int HP;
 	
 	public void setBaseDStats() {
 		this.health = calcBaseHealth();
@@ -97,28 +104,209 @@ public class Character {
 	// 5 = AttSpeed : 6 = PDmg : 7 = MDmg : 8 = Armor : 9 = Lives : 10 = Luck
 	public int calcAdjStrength() {
 		int x = strength;
+		for(int i = 0; i < Equipped.size(); i++) {
+			
+			if((Equipped.get(i).Ench.EType == 3)&&(Equipped.get(i).Ench.EStat == 0)) {
+				x =+ Equipped.get(i).Ench.EAmount;
+			}
 		
+		}
+		
+		return x;
+	}
+	public int calcAdjAgility() {
+		int x = agility;
+		for(int i = 0; i < Equipped.size(); i++) {
+			
+			if((Equipped.get(i).Ench.EType == 3)&&(Equipped.get(i).Ench.EStat == 1)) {
+				x =+ Equipped.get(i).Ench.EAmount;
+			}
+		
+		}
+		
+		return x;
+	}
+	
+	public int calcAdjDexterity() {
+		int x = agility;
+		for(int i = 0; i < Equipped.size(); i++) {
+			
+			if((Equipped.get(i).Ench.EType == 3)&&(Equipped.get(i).Ench.EStat == 2)) {
+				x =+ Equipped.get(i).Ench.EAmount;
+			}
+		
+		}
+		
+		return x;
+	}
+	
+	public int calcAdjIntelligence() {
+		int x = agility;
+		for(int i = 0; i < Equipped.size(); i++) {
+			
+			if((Equipped.get(i).Ench.EType == 3)&&(Equipped.get(i).Ench.EStat == 3)) {
+				x =+ Equipped.get(i).Ench.EAmount;
+			}
+		
+		}
+		
+		return x;
+	}
+	
+	public int calcAdjConstitution() {
+		int x = agility;
+		for(int i = 0; i < Equipped.size(); i++) {
+			
+			if((Equipped.get(i).Ench.EType == 3)&&(Equipped.get(i).Ench.EStat == 4)) {
+				x =+ Equipped.get(i).Ench.EAmount;
+			}
+		
+		}
+		
+		return x;
+	} 
+	
+	public int calcAdjMDamage() {
+		int x = 0;
+		for(int i = 0; i < Equipped.size(); i++) {
+			
+			if((Equipped.get(i).Ench.PDmg == false)&&(Equipped.get(i).Ench.EType == 4)) {
+				x =+ Equipped.get(i).Ench.EAmount;
+		
+			}
+		}
+		return x;
+	}
+	
+	public int calcAdjPDamage() {
+		int x = pDamage;
+		for(int i = 0; i < Equipped.size(); i++) {
+			
+			if((Equipped.get(i).Ench.PDmg == true)&&(Equipped.get(i).Ench.EType == 4)) {
+				x =+ Equipped.get(i).Ench.EAmount;
+		
+			}
+		}
+		return x;
+	}
+	
+	public int calcExtraLife() {
+		int x = extraLife;
+		
+		for(int i = 0; i < Equipped.size(); i++) {
+			
+			if(Equipped.get(i).Ench.EType == 5) {
+				x =+ Equipped.get(i).Ench.EAmount;
+				
+			}
+		}
+		
+		return x;
+	}
+	
+	public int calcAdjLuck() {
+		int x = luck;
+		for(int i = 0; i < Equipped.size(); i++) {
+			
+			if(Equipped.get(i).Ench.EType == 6) {
+				x =+ Equipped.get(i).Ench.EAmount;
+				
+			}
+		}
+		return x;
+	}
+	
+	public int calcAdjAttackSpeed() {
+		int x = attackSpeed;
+		for(int i = 0; i < Equipped.size(); i++) {
+			
+			if(Equipped.get(i).Ench.EType == 8) {
+				x =+ Equipped.get(i).Ench.EAmount;
+				
+			}
+		}
+		return x;
+	}
+	
+	public int calcAdjArmor() {
+		int x = armor;
+		for(int i = 0; i < Equipped.size(); i++) {
+			
+			if(Equipped.get(i).Ench.EType == 7) {
+				x =+ Equipped.get(i).Ench.EAmount;
+				
+			}
+		}
+		
+		return x;
+		
+	}
+	
+	public int calcAdjHealth() {
+		int x = health;
+		for(int i = 0; i < Equipped.size(); i++) {
+			
+			if(Equipped.get(i).Ench.EType == 0) {
+				x =+ Equipped.get(i).Ench.EAmount;
+				
+			}
+		}
+		return x;
+			
+	}
+	
+	public int calcAdjMana() {
+		
+		int x = health;
+		for(int i = 0; i < Equipped.size(); i++) {
+			
+			if(Equipped.get(i).Ench.EType == 1) {
+				x =+ Equipped.get(i).Ench.EAmount;
+				
+			}
+		}
+		return x;
+			
+	}
+	
+	public int calcAdjStamina() {
+		int x = health;
+		for(int i = 0; i < Equipped.size(); i++) {
+			
+			if(Equipped.get(i).Ench.EType == 2) {
+				x =+ Equipped.get(i).Ench.EAmount;
+				
+			}
+		}
+		return x;
+			
+	}
+	
+	public int calcHP() {
+		calcAdjHealth();
+		int x = AdjHealth;
+		
+		x =- sustainedDmg;
 		
 		
 		return x;
 	}
 
-	
-	
-	ArrayList<Item> Inventory = new ArrayList<Item>(); // : >5 = Inventory
-	ArrayList<Item> Equipped = new ArrayList<Item>(); // 0 = Armor : 1 = Left Hand : 2 = Right Hand: 3 = Necklace : 4 = Left Ring : 5 = Right Ring
+	ArrayList<Item> Inventory = new ArrayList<Item>(); // 0 = Armor : 1 = Left Hand : 2 = Right Hand: 3 = Necklace : 4 = Left Ring : 5 = Right Ring : >5 = Inventory
+	ArrayList<Item> Equipped = new ArrayList<Item>();
 	
 	public void ResetInventory( ) { //And Reset new OwO
-		Inventory.ensureCapacity(6);
-		Item nothing = new Item("nothing", "Empty", 0);
-		for(int x = 0 ; x < 5 ; x++) {
-			
-			Inventory.add(x,nothing);
+		Inventory.ensureCapacity(5);
+		
+		for(int x = 0; x < 6; x++ ) {
+		Item Nothing = new Item ("nothing","nothing", x);
+		Inventory.add(x,Nothing);
 		}
 	}
 	
 	public void updateEquipped() {
-		
+		Equipped.clear();
+		Equipped.addAll(checkEquipped());
 	}
 	
 	public void UseItem(Item x) {
@@ -131,10 +319,7 @@ public class Character {
 	}
 	
 	public void AddItem(Item x) {
-
-		
-			Inventory.add(x);
-		
+		Inventory.add(x);
 	}
 	
 	public void EquipItem(Item x ) { //Will I ever use this?
@@ -178,6 +363,8 @@ public class Character {
 	
 	// 0 = Str : 1 = Agi : 2 = Dext : 3 = Int : 4 = Const 
 	// 5 = AttSpeed : 6 = PDmg : 7 = MDmg : 8 = Armor : 9 = Lives : 10 = Luck
+	
+
 	
 	public int[] calcAdjusted() {
 		int[] adj = new int [11];

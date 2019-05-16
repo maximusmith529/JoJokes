@@ -12,11 +12,6 @@ public class Main {
 		Character DIO = new Character(true,"Dio", "Yellow", "Golden", "White", 23, 6.2, 1, 15, 15, 15, 9, 15);
 		Item Mask = new Item("full plate-mail", "A strange mask, looks to be of Aztec origin", 0);
 		DIO.AddItem(Mask);
-		DIO.AddItem(Mask);
-		DIO.AddItem(Mask);
-		DIO.AddItem(Mask);
-		DIO.AddItem(Mask);
-		
 		Character JOJO = new Character(true, "JOJO", "Black", "Brown", "Olive", 23, 6.2, 1, 15, 15, 15, 9, 15);
 		Descriptions D = new Descriptions();
 	
